@@ -1,5 +1,17 @@
 # Test Results
 
+- [Test Results](#test-results)
+  - [Force flush](#force-flush)
+    - [Results](#results)
+    - [Logs](#logs)
+  - [Shutdown](#shutdown)
+    - [Results](#results-1)
+    - [Logs](#logs-1)
+  - [Automatic flush](#automatic-flush)
+    - [Results](#results-2)
+    - [Logs](#logs-2)
+
+
 ## Force flush
 
 We call forceFlush on metric to trigger a flush of the metrics.
