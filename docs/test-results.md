@@ -8,7 +8,7 @@ We call forceFlush on metric to trigger a flush of the metrics.
 
 Same metric is reported 5 times, 1 minute apart.
 
-![](./images/force-flush.png)
+![](./forced-flush.png)
 
 ### Logs
 
@@ -97,7 +97,7 @@ We call shutdown on metric to trigger a shutdown of the collector.
 
 Same metric is reported 5 times, 1 minute apart.
 
-![](./images/shutdown.png)
+![](./shutdown.png)
 
 ### Logs
 
