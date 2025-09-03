@@ -1,0 +1,7 @@
+# Copy this file to terraform.tfvars and update the values as needed
+aws_region = "eu-west-1"
+
+# Grafana OTLP Configuration
+grafana_otlp_endpoint = "https://otlp.grafana.com"
+grafana_otlp_username = "your-grafana-username"
+grafana_otlp_password = "your-grafana-password"

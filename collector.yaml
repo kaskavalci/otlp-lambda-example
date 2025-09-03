@@ -1,0 +1,27 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: "0.0.0.0:4317"
+      http:
+        endpoint: "0.0.0.0:4318"
+
+exporters:
+  # Console exporter for debugging - will show exactly what gets exported
+  debug:
+
+  # Keep Grafana exporter but with minimal config
+  otlphttp:
+    endpoint: "${env:GRAFANA_OTLP_ENDPOINT}"
+    headers:
+      authorization: "Basic ${env:GRAFANA_OTLP_AUTH}"
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      # Export to both console (for debugging) and Grafana
+      exporters: [debug, otlphttp]
+  telemetry:
+    logs:
+      level: debug

@@ -1,0 +1,25 @@
+{
+  "name": "metrics-generator",
+  "version": "1.0.0",
+  "description": "Lambda function to generate and export custom metrics.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "esbuild index.ts --bundle --platform=node --target=node20 --external:@aws-sdk/* --format=cjs --outfile=dist/index.js && cp collector.yaml dist/",
+    "build:prod": "esbuild index.ts --bundle --platform=node --target=node20 --external:@aws-sdk/* --sourcemap=external --format=cjs --outfile=dist/index.js --minify && cp collector.yaml dist/",
+    "package": "npm run build && cd dist && zip -r ../lambda-package.zip . && cd ..",
+    "package:prod": "npm run build:prod && cd dist && zip -r ../lambda-package.zip . && cd ..",
+    "deploy": "npm run package && terraform init && terraform apply",
+    "deploy:prod": "npm run package:prod && terraform init && terraform apply",
+    "destroy": "terraform destroy",
+    "plan": "npm run build && terraform init && terraform plan",
+    "invoke": "aws lambda invoke --function-name otlp-lambda-example /dev/null"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.152",
+    "esbuild": "^0.25.9",
+    "typescript": "^5.9.2"
+  }
+}
